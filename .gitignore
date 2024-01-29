@@ -13,3 +13,6 @@ flymd.*
 .html
 .lsp
 .clj-kondo
+/.idea
+/*.iml
+/.cpcache
