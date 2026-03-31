@@ -2,12 +2,12 @@
 
 A clojure library that implements the [Signature Version 4 Signing Process](http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html). It is inspired by [s3-beam](https://github.com/martinklepsch/s3-beam) and [this blog post](http://sapient-pair.com/blog/2016/03/08/clojure-aws4-auth/). This library can be used to sign requests, for instance by implementing a signing service.
 
-This library [passes](https://circleci.com/gh/jerben/clj-aws-sign) the [Signature Version 4 Test Suite](http://docs.aws.amazon.com/general/latest/gr/signature-v4-test-suite.html). ![Badge](https://circleci.com/gh/jerben/clj-aws-sign.svg?style=shield&circle-token=a896fa25d5dca658b03b43c51c11d6cf25ee8598 "Badge")
+This library passes the [Signature Version 4 Test Suite](http://docs.aws.amazon.com/general/latest/gr/signature-v4-test-suite.html).
 
-[![Clojars Project](https://img.shields.io/clojars/v/clj-aws-sign.svg)](https://clojars.org/clj-aws-sign)
+[![Clojars Project](https://img.shields.io/clojars/v/org.clojars.lowecg/clj-aws-sign.svg)](https://clojars.org/org.clojars.lowecg/clj-aws-sign)
 
 ```clojure
-[clj-aws-sign "0.1.1"]
+{:deps {org.clojars.lowecg/clj-aws-sign {:mvn/version "0.1.1"}}}
 ```
 
 ## Usage
@@ -59,6 +59,12 @@ The following options are optional:
 
 
 # Building 
+
+## Using Clojure CLI
+```
+clojure -X:test
+clojure -T:build jar :version "\"0.0.0-local\""
+```
 
 ## Using lein
 ```

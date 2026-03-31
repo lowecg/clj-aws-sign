@@ -1,0 +1,46 @@
+name: Build and test project
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+jobs:
+  clojure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Cache Clojure dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
+          key: cljdeps-v1-${{ hashFiles('**/deps.edn') }}
+          restore-keys: cljdeps-v1-
+
+      - name: Prepare java
+        uses: actions/setup-java@v5
+        with:
+          distribution: corretto
+          java-version: "25"
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@13.6.0
+        with:
+          cli: latest
+
+      - name: Run tests
+        run: |
+          clojure -X:test
+
+      - name: Build jar
+        run: |
+          clojure -T:build jar :version "\"0.0.0-ci\""
